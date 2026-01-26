@@ -1,0 +1,8 @@
+snapshots:
+  - name: scd_raw_listings
+    relation: source('airbnb', 'listings')
+    config:
+      unique_key: id
+      strategy: timestamp  # if we don't have a timestamp column, we can use "check" instead; will check everything
+      updated_at: updated_at
+      hard_deletes: invalidate # if a row is deleted, the valid_to is filled in with the respective timestamp
